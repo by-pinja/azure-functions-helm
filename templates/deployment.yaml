@@ -1,22 +1,22 @@
-kind: Service
-metadata:
-  name: {{ .Values.functionApp.name }}
-  labels:
-    app: {{ .Values.functionApp.name }}
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.externalPort }}
-      targetPort: {{ .Values.service.internalPort }}
-      protocol: TCP
-      name: {{ .Values.service.name }}
-  selector:
-    app: {{ .Values.functionApp.name }}
-    release: {{ .Release.Name }}
----
+#kind: Service
+#metadata:
+#  name: {{ .Values.functionApp.name }}
+#  labels:
+#    app: {{ .Values.functionApp.name }}
+#    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+#    release: {{ .Release.Name }}
+#    heritage: {{ .Release.Service }}
+#spec:
+#  type: {{ .Values.service.type }}
+#  ports:
+#    - port: {{ .Values.service.externalPort }}
+#      targetPort: {{ .Values.service.internalPort }}
+#      protocol: TCP
+#      name: {{ .Values.service.name }}
+#  selector:
+#    app: {{ .Values.functionApp.name }}
+#    release: {{ .Release.Name }}
+#---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -25,7 +25,8 @@ metadata:
     app: {{ .Values.functionApp.name }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}spec:
+    heritage: {{ .Release.Service }}
+spec:
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:
